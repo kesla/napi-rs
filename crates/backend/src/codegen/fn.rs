@@ -139,7 +139,7 @@ impl NapiFn {
 
       match &arg.kind {
         NapiFnArgKind::PatType(path) => {
-          if &path.ty.to_token_stream().to_string() == "Env" {
+          if &path.ty.to_token_stream().to_string() == "Env" || path.ty.to_token_stream().to_string() == "napi::Env" {
             args.push(quote! { napi::bindgen_prelude::Env::from(env) });
             skipped_arg_count += 1;
           } else {

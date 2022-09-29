@@ -135,7 +135,7 @@ impl NapiFn {
         .filter_map(|arg| match &arg.kind {
           crate::NapiFnArgKind::PatType(path) => {
             let ty_string = path.ty.to_token_stream().to_string();
-            if ty_string == "Env" {
+            if ty_string == "Env" || ty_string == "napi::Env" {
               return None;
             }
             if let syn::Type::Path(path) = path.ty.as_ref() {
